@@ -1,16 +1,14 @@
 class Solution {
 public:
-    int findTheWinner(int n, int k) {
-        vector<int> friends;
-        for(int i=1;i<=n;i++){
-            friends.push_back(i);
-        }
+    
+    int r(int n,int k){
+        if(n==1) return 0;
 
-        int idx = 0;
-        while(friends.size()>1){
-            idx = (idx+k-1)%friends.size();
-            friends.erase(friends.begin()+idx);
-        }
-        return friends[0];
+        return (r(n-1,k)+k)%n;
+    }
+
+    int findTheWinner(int n, int k) {
+        return r(n,k)+1;
+        
     }
 };

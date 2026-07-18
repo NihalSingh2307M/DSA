@@ -1,24 +1,23 @@
 class Solution {
 public:
-     
-    int gcd(int a,int b){
-        while(a>0&&b>0){
-            if(a>b){
-                a=a%b;
-            }else{
-                b=b%a;
-            }
+    int gcd(int dividend, int divisor) {
+        while (divisor != 0) {
+            int rem = dividend % divisor;
+            dividend = divisor;
+            divisor = rem;
         }
-        if(a==0) return b;
-         return a;
+        return dividend;
     }
     int findGCD(vector<int>& nums) {
-        int minn = nums[0], maxn = nums[0];
-        for(int x : nums){
-            minn = min(minn, x);
-            maxn = max(maxn, x);
+        int minimum = nums[0];
+        int maximum = nums[0];
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] < minimum)
+                minimum = nums[i];
+            if (nums[i] > maximum)
+                maximum = nums[i];
         }
 
-        return gcd(minn, maxn);
+        return gcd(maximum, minimum);
     }
 };
